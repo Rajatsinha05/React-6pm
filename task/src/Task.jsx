@@ -8,6 +8,7 @@ const Task = () => {
   });
 
   let [list, setList] = useState([]);
+
   const handleInput = (e) => {
     let { name, value } = e.target;
     setData({
@@ -18,7 +19,7 @@ const Task = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
+
     setList([...list, { ...data, id: Date.now() }]);
   };
   return (
