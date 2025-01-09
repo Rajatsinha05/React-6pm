@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TodoItem from "./TodoItem";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 const Task = () => {
   let [data, setData] = useState({
@@ -8,6 +9,7 @@ const Task = () => {
     isCompleted: false,
   });
 
+  let [id, setId] = useState(-1);
   let [list, setList] = useState([]);
 
   const handleInput = (e) => {
@@ -21,13 +23,42 @@ const Task = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    setList([...list, { ...data, id: Date.now() }]);
+    if (data.task.length > 0 && data.date.length > 0) {
+      if (id == -1) {
+        setList([...list, { ...data, id: Date.now() }]);
 
-    setData({
-      task: "",
-      date: "",
-      isCompleted: false,
-    });
+        setData({
+          task: "",
+          date: "",
+          isCompleted: false,
+        });
+
+        toast.success("🦄  easy!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        });
+      } else {
+        let temp = list.map((ele) =>
+          ele.id == id ? { ...data, id: id } : ele
+        );
+        setList(temp);
+      }
+      setId(-1)
+    }
+  }; 
+
+  const handleStatusChange = (id) => {
+    let temp = list.map((ele) =>
+      ele.id == id ? { ...ele, isCompleted: !ele.isCompleted } : ele
+    );
+    setList(temp);
   };
 
   const handleDelete = (id) => {
@@ -35,7 +66,15 @@ const Task = () => {
     let temp = list.filter((ele) => ele.id != id);
     setList(temp);
   };
-
+  const onUpdate = (prevData) => {
+    console.log(prevData);
+    setData({
+      task: prevData.task,
+      date: prevData.date,
+      isCompleted: prevData.isCompleted,
+    });
+    setId(prevData.id);
+  };
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -52,11 +91,19 @@ const Task = () => {
           value={data.date}
         />
         <input type="submit" />
+        <ToastContainer />
       </form>
       <hr />
-      {list.map((ele) => (
-        <TodoItem {...ele} key={ele.id} onDelete={handleDelete} />
-      ))}
+      {list.length > 0 &&
+        list.map((ele) => (
+          <TodoItem
+            {...ele}
+            key={ele.id}
+            onDelete={handleDelete}
+            onStatusUpdate={handleStatusChange}
+            onUpdate={onUpdate}
+          />
+        ))}
     </div>
   );
 };
