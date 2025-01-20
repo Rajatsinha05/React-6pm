@@ -1,12 +1,13 @@
-import React from 'react'
-import Api from './Api'
+import React from "react";
+
+import Form from "./Form";
 
 const App = () => {
   return (
     <div>
-      <Api/>
+      <Form />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

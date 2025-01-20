@@ -1,0 +1,10 @@
+{
+  "courses": [
+    {
+      "id": "c79e",
+      "title": "test",
+      "fee": "454",
+      "duration": "50"
+    }
+  ]
+}
