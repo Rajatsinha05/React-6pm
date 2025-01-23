@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import API from "./config/api";
 
+const Form = ({ initialData = {} }) => {
+  console.log(initialData);
 
-const Form = () => {
   const [course, setCourse] = useState({
-    title: "",
-    fee: "",
-    duration: "",
+    title: initialData.title ? initialData.title : "",
+    fee: initialData.fee ? initialData.fee : "",
+    duration: initialData.duration ? initialData.duration : "",
   });
 
   const handleInput = (e) => {
@@ -18,12 +19,21 @@ const Form = () => {
   };
 
   const createCourse = async (course) => {
-    let res = await API.post("/courses", course);
-   
+    if (initialData?.id) {
+      console.log("update course", initialData.id);
+      await API.patch(`/courses/${initialData.id}`, course);
+    } else {
+      let res = await API.post("/courses", course);
+    }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     createCourse(course);
+    setCourse({
+      title: "",
+      fee: "",
+      duration: "",
+    });
   };
   return (
     <div>
