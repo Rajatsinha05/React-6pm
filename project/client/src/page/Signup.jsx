@@ -18,10 +18,12 @@ const Signup = () => {
 
   const createUser = async (data) => {
     // api call
+    console.log(data);
+    
     let res = await API.post("/users/signup", data);
     const { user, token } = res.data;
     console.log(user, token);
-    Cookies.set("token", token);
+    Cookies.set("token", token,{expires:2});
   };
   const onSubmit = (e) => {
     e.preventDefault();
@@ -49,8 +51,7 @@ const Signup = () => {
           value={user.password}
           onChange={handleInput}
         />
-
-        <input type="submit" />
+        <input type="submit" value={"signup"} />
       </form>
     </div>
   );
