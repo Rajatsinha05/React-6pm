@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserDetails } from "../userDetails";
 import Cookies from "js-cookie";
+import { Ability } from "../role/Ability";
 const Navbar = () => {
   const nav = useNavigate();
   let user = getUserDetails();
@@ -20,14 +21,21 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/assign">
-                Assign
-              </Link>
-            </li>
+            {Ability(["admin"]) ? (
+              <li className="nav-item">
+                <Link className="nav-link" to="/assign">
+                  Assign
+                </Link>
+              </li>
+            ) : null}
+
             <li className="nav-item">
               {user ? (
-                <p className="nav-link" onClick={logOut}>
+                <p
+                  className="nav-link"
+                  onClick={logOut}
+                  style={{ cursor: "pointer" }}
+                >
                   logout
                 </p>
               ) : (
