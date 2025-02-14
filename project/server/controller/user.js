@@ -36,6 +36,7 @@ exports.login = async (req, res) => {
   return res.status(201).send({ user, token });
 };
 exports.getAllUsers = async (req, res) => {
-  let users = await User.findAll();
+  let query = req.query || {};
+  let users = await User.find(query);
   res.status(200).send(users);
 };
