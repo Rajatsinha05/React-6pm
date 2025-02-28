@@ -1,5 +1,9 @@
 import { DECRESE, INCREASE, RESET } from "./ActionType";
 
+export const getApi=() =>async(dispatch)=>{
+  // api call
+  dispatch(increase(data))
+} 
 export const increase = (payload) => {
   return {
     type: INCREASE,
