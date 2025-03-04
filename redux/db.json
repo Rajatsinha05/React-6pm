@@ -1,24 +1,3 @@
 {
-  "posts": [
-    {
-      "id": "63e6",
-      "test": "Testing"
-    },
-    {
-      "id": "57ae",
-      "test": "Testing"
-    },
-    {
-      "id": "838e",
-      "test": "Testing"
-    },
-    {
-      "id": "20a3",
-      "test": "Testing"
-    },
-    {
-      "id": "fac8",
-      "test": "Testing"
-    }
-  ]
+  "posts": []
 }

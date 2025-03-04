@@ -1,4 +1,4 @@
-import { CREATE_POST, GET_POSTS } from "./ActionType";
+import { CREATE_POST, DELETE_POST, GET_POSTS } from "./ActionType";
 
 let initialState = {
   post: [],
@@ -16,6 +16,11 @@ export const postReducer = (state = initialState, { type, payload }) => {
         ...state,
         post: payload,
       };
+    case DELETE_POST:
+      // return {
+      //   ...state,
+      //   post: state.post.filter((post) => post.id != payload),
+      // };
     default:
       return state;
   }

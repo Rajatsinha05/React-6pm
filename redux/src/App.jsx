@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { decrement, increase } from './redux/Action'
-import { getPosts } from './redux/post/action'
+import { deletePost, getPosts } from './redux/post/action'
+import BlogCard from './Components/BlogCard'
 
 const App = () => {
   // let { count } = useSelector((store) => store)
@@ -13,14 +14,22 @@ const App = () => {
     dispatch(getPosts())
   }, [])
 
-  let data = useSelector(store => store.post)
-  console.log(data.post);
+  let { post } = useSelector(store => store.post)
+
+
+  const handleDelete = (id) => {
+    dispatch(deletePost(id))
+    console.log(id + ' delete');
+
+  }
+
 
   return (
     <div>
-      {/* <h1>count :{count}</h1> */}
-      <button onClick={add} >INC</button>
-      <button onClick={() => dispatch(decrement())}>DEC</button>
+      {
+        post && (post.map((post,i) => <BlogCard {...post} onDelete={handleDelete} i={i} />))
+      }
+
     </div>
   )
 }
