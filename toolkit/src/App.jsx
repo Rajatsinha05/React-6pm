@@ -11,7 +11,8 @@ function App() {
     dispatch(add({
       name: "test",
       email: "test@gmail.com",
-      password: "testing"
+      password: "testing",
+      id:Date.now()
     }))
   }
 
