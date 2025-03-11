@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { useDispatch } from 'react-redux'
 import { add } from './redux/userSlice'
+import { useEffect } from 'react'
+import { fetchApi } from './redux/post/api'
 
 function App() {
   const dispatch = useDispatch()
@@ -16,6 +18,9 @@ function App() {
     }))
   }
 
+  useEffect(()=>{
+   dispatch(fetchApi())
+  },[])
   return (
     <>
       <div>
