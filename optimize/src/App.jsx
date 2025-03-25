@@ -1,5 +1,6 @@
 import React from 'react'
 import { googleAuth, signin, signupWithEmail } from './config/firebase'
+import User from './User'
 
 const App = () => {
   const handleGoogleAuth = async () => {
@@ -16,8 +17,9 @@ const App = () => {
   }
   return (
     <div>
-      <button onClick={login}>login</button>
-      <button onClick={handleGoogleAuth}>google</button>
+      {/* <button onClick={login}>login</button>
+      <button onClick={handleGoogleAuth}>google</button> */}
+      <User/>
     </div>
   )
 }

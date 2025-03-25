@@ -2,6 +2,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
+import { getFirestore } from "firebase/firestore";
+
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -11,19 +13,21 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBvrRcTIdW8LTsO3jkIpZMHmlsLFlJWNuM",
-  authDomain: "react-app-e49da.firebaseapp.com",
-  projectId: "react-app-e49da",
-  storageBucket: "react-app-e49da.firebasestorage.app",
-  messagingSenderId: "338457550540",
-  appId: "1:338457550540:web:d69d3e376aa24deea06c69",
-  measurementId: "G-KHJV547YNM",
+  apiKey: "AIzaSyBJKTWekOlS8Q9tUmlVGbDZ3z-jbb_NJnI",
+  authDomain: "database-756b0.firebaseapp.com",
+  projectId: "database-756b0",
+  storageBucket: "database-756b0.firebasestorage.app",
+  messagingSenderId: "283331444989",
+  appId: "1:283331444989:web:27f5930a1f8ba63872be94",
+  measurementId: "G-KJEWZ1Y2Q7",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+
+export const db = getFirestore(app);
 
 export const googleAuth = async () => {
   const provider = new GoogleAuthProvider();
